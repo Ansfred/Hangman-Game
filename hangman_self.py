@@ -130,16 +130,18 @@ def hangman(secret_word):
         * Display partial word guessed by the user and use underscore in place of unguessed characters.    
     '''
     
-    print("Welcome to the Hangman Game !")
-    print("\nI am thinking of a word that is {} letters long.".format(str(len(secret_word))), end = '\n\n')
+    print("***** Welcome to the Hangman Game ! ******")
+    print("NOTE : User kindly enter the letters of your choice one at a time. If at any point, you feel the need of using a hint, type 'hint'. Note : The hint can only be used once.")
+
+    print("\n\nI am thinking of a word that is {} letters long.".format(str(len(secret_word))))
         
     # Creating an empty list to store the letters guessed by the user.
     letters_guessed = []
     # This is the main loop of the game. It will keep running until the user either guesses the word, uses the hint more than once or runs out of lives.
 
-    print("User, kindly enter the letters of your choice one at a time. If at any point, you feel the need of using a hint, type 'hint'. Note : The hint can only be used once.")
+    
     while((remaining_lives != 0) and (hint_count >= 0)):
-        user_choice = input("User's Input : ")
+        user_choice = input("\n\nUser's Input : ")
         user_choice = user_choice.lower()
             
         if user_choice in secret_word:
@@ -151,7 +153,7 @@ def hangman(secret_word):
             print("Available letters : {} ".format(available_letters))   
             
             if is_word_guessed_right(secret_word, letters_guessed):
-                print(" *** Congratulations, you won !!! Very well played *** ", end = '\n\n')
+                print("\n\n*** Congratulations, you won !!! Very well played ***", end = '\n\n')
                 break   
             
         elif user_choice == "hint":
@@ -164,7 +166,7 @@ def hangman(secret_word):
             print("Available Letters: {} ".format(available_letters))   
             
             if is_word_guessed_right(secret_word, letters_guessed):
-                print(" *** Congratulations, you won !!! Very well played *** ", end = '\n\n')
+                print("\n\n*** Congratulations, you won !!! Very well played ***", end = '\n\n')
                 break
             
         else:
@@ -174,7 +176,6 @@ def hangman(secret_word):
             
             available_letters = get_available_letters(letters_guessed)
             print("\nAvailable Letters : {} ".format(available_letters)) 
-            print("\n")
   
             # Printing the hangman image.
             print(display_image(8 - (remaining_lives)))
@@ -184,8 +185,8 @@ def hangman(secret_word):
             continue
         
     if (remaining_lives == 0):
-        print("*** Game Over, Better Luck Next Time!!! :) ***")
-        print("Correct word was : ", secret_word)
+        print("\n\n*** Game Over, Better Luck Next Time!!! :) ***")
+        print("Correct word was :", secret_word)
         
 
 # Calling the function choose_word() from the file words.py and assigning the return value to the variable secret_word.
